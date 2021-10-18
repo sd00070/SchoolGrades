@@ -30,5 +30,7 @@ public abstract class GradeDecorator implements Grade {
 	}
 
 	@Override
-	public abstract double getValue();
+	public double getValue() {
+		return this.grade.getValue();
+	}
 }
