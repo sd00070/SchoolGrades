@@ -52,7 +52,6 @@ public class WeightedGrade extends GradeDecorator {
 	 * @return the new value after being weighted
 	 */
 	public double getValue() {
-		// TODO: implement weighting
-		return 0.0;
+		return super.getValue() * this.weight;
 	}
 }
