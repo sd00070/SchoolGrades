@@ -17,8 +17,7 @@ public class CompositeGrade implements Grade {
 	 * value.
 	 */
 	public CompositeGrade() {
-		this.grades = new ArrayList<Grade>();
-		// this.gradingStrategy = new MeanGradingStrategy();
+		// this(new MeanGradingStrategy());
 	}
 
 	/**
@@ -29,6 +28,12 @@ public class CompositeGrade implements Grade {
 	 *                                to use
 	 */
 	public CompositeGrade(GradingStrategy selectedGradingStrategy) {
+		if (selectedGradingStrategy == null) {
+			throw new IllegalArgumentException("Must pass in a valid GradingStrategy");
+		}
+		
+		this.grades = new ArrayList<Grade>();
+		
 		// TODO: attach GradingStrategy to CompositeGrade
 	}
 
