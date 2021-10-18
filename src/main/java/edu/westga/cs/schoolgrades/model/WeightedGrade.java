@@ -36,8 +36,13 @@ public class WeightedGrade extends GradeDecorator {
 	 * 1.0 -> 100% ...)
 	 * 
 	 * @param newWeight - the weight to affect the Grade
+	 * @precondition newWeight >= 0.0
+	 * @throws IllegalArgumentException if newWeight < 0.0
 	 */
 	public void setWeight(double newWeight) {
+		if (newWeight < 0.0) {
+			throw new IllegalArgumentException("New weight must be 0 or a positive number");
+		}
 		this.weight = newWeight;
 	}
 
