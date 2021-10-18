@@ -14,9 +14,24 @@ public class SimpleGrade implements Grade {
 	 * Creates a new SimpleGrade with the given value.
 	 * 
 	 * @param newValue - the value to assign to the Grade
-	 * @precondition newValue >= 0
 	 */
 	public SimpleGrade(double newValue) {
+		this.setValue(newValue);
+	}
+
+	@Override
+	public double getValue() {
+		return this.value;
+	}
+
+	/**
+	 * Sets the SimpleGrade's value.
+	 * 
+	 * @param newValue - the new value for the SimpleGrade
+	 * @precondition newValue >= 0
+	 * @throws IllegalArgumentException if newValue < 0
+	 */
+	public void setValue(double newValue) {
 		if (newValue < 0.0) {
 			throw new IllegalArgumentException("Grade value must be greater than or equal to 0.0");
 		}
@@ -27,10 +42,5 @@ public class SimpleGrade implements Grade {
 		 */
 
 		this.value = newValue;
-	}
-
-	@Override
-	public double getValue() {
-		return this.value;
 	}
 }
