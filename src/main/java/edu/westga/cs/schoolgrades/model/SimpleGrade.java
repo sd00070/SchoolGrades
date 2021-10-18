@@ -33,14 +33,4 @@ public class SimpleGrade implements Grade {
 	public double getValue() {
 		return this.value;
 	}
-
-	/**
-	 * Sets the value to a new value.
-	 * 
-	 * @param newValue - the new value to use for the Grade
-	 */
-	public void setValue(double newValue) {
-		this.value = newValue;
-	}
-
 }
