@@ -38,6 +38,8 @@ public class CompositeGrade implements Grade {
 	 * Sets the GradingStrategy of the CompositeGrade.
 	 * 
 	 * @param selectedGradingStrategy - the GradingStrategy to use
+	 * @precondition selectedGradingStrategy != null
+	 * @throws IllegalArgumentException if selectedGradingStrategy == null
 	 */
 	public void setGradingStrategy(GradingStrategy selectedGradingStrategy) {
 		if (selectedGradingStrategy == null) {
@@ -79,7 +81,7 @@ public class CompositeGrade implements Grade {
 		if (this.grades.isEmpty()) {
 			return 0.0;
 		}
-		
+
 		return this.gradingStrategy.totalGrades(this.grades);
 	}
 
