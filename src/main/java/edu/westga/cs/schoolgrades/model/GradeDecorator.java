@@ -14,10 +14,16 @@ public abstract class GradeDecorator implements Grade {
 	/**
 	 * Constructor basis used by all GradeDecorator classes.
 	 * 
-	 * @param wrappedGrade - the Grade being decorated
+	 * @param decoratedGrade - the Grade being decorated
+	 * @precondition - decoratedGrade != null
+	 * @throws IllegalArgumentException if decoratedGrade == null
 	 */
-	public GradeDecorator(Grade wrappedGrade) {
-		this.grade = wrappedGrade;
+	public GradeDecorator(Grade decoratedGrade) {
+		if (decoratedGrade == null) {
+			throw new IllegalArgumentException("DecoratedGrade cannot be null");
+		}
+
+		this.grade = decoratedGrade;
 	}
 
 	/**
