@@ -11,13 +11,14 @@ import java.util.ArrayList;
 public class CompositeGrade implements Grade {
 
 	private ArrayList<Grade> grades;
+	private GradingStrategy gradingStrategy;
 
 	/**
 	 * Creates a CompositeGrade using the MeanGradingStrategy to produce a single
 	 * value.
 	 */
 	public CompositeGrade() {
-		// this(new MeanGradingStrategy());
+		this(new MeanGradingStrategy());
 	}
 
 	/**
@@ -28,13 +29,31 @@ public class CompositeGrade implements Grade {
 	 *                                to use
 	 */
 	public CompositeGrade(GradingStrategy selectedGradingStrategy) {
+		this.setGradingStrategy(selectedGradingStrategy);
+
+		this.grades = new ArrayList<Grade>();
+	}
+
+	/**
+	 * Sets the GradingStrategy of the CompositeGrade.
+	 * 
+	 * @param selectedGradingStrategy - the GradingStrategy to use
+	 */
+	public void setGradingStrategy(GradingStrategy selectedGradingStrategy) {
 		if (selectedGradingStrategy == null) {
 			throw new IllegalArgumentException("Must pass in a valid GradingStrategy");
 		}
-		
-		this.grades = new ArrayList<Grade>();
-		
-		// TODO: attach GradingStrategy to CompositeGrade
+
+		this.gradingStrategy = selectedGradingStrategy;
+	}
+
+	/**
+	 * Returns the selected GradingStrategy.
+	 * 
+	 * @return the GradingStrategy currently in use
+	 */
+	public GradingStrategy getGradingStrategy() {
+		return this.gradingStrategy;
 	}
 
 	/**
@@ -57,8 +76,11 @@ public class CompositeGrade implements Grade {
 
 	@Override
 	public double getValue() {
-		// TODO Auto-generated method stub
-		return 0;
+		if (this.grades.isEmpty()) {
+			return 0.0;
+		}
+		
+		return this.gradingStrategy.totalGrades(this.grades);
 	}
 
 }
