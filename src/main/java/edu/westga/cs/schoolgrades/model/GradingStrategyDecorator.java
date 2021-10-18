@@ -28,6 +28,15 @@ public abstract class GradingStrategyDecorator implements GradingStrategy {
 		this.gradingStrategy = decoratedGradingStrategy;
 	}
 
+	/**
+	 * Returns the GradingStrategy being decorated.
+	 * 
+	 * @return the Decorator's subject
+	 */
+	public GradingStrategy getGradingStrategy() {
+		return this.gradingStrategy;
+	}
+
 	@Override
 	public double totalGrades(List<Grade> grades) {
 		return this.gradingStrategy.totalGrades(grades);
