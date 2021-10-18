@@ -46,10 +46,6 @@ public class DropLowestGradeGradingStrategyDecorator extends GradingStrategyDeco
 	 * @return the Grade with the lowest value
 	 */
 	private Grade findLowestGrade(List<Grade> grades) {
-		if (grades == null) {
-			return null;
-		}
-
 		Grade lowest = grades.get(0);
 
 		for (Grade grade : grades) {
