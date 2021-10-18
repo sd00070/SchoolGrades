@@ -1,5 +1,6 @@
 package edu.westga.cs.schoolgrades.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -29,5 +30,24 @@ public class TestCompositeGradeConstructor {
 	@Test
 	public void testShouldThrowErrorIfPassedNull() {
 		assertThrows(IllegalArgumentException.class, () -> new CompositeGrade(null));
+	}
+
+	/**
+	 * Constructing a new CompositeGrade without passing in a GradingStrategy should
+	 * default to MeanGradingStrategy.
+	 */
+	@Test
+	public void testShouldUseMeanGradingStrategyIfNoStrategyPassedIn() {
+		assertEquals(MeanGradingStrategy.class, new CompositeGrade().getGradingStrategy().getClass());
+	}
+
+	/**
+	 * Passing in a GradingStrategy should set the CompositeGrade's selected
+	 * GradingStrategy.
+	 */
+	@Test
+	public void testShouldSetGradingStrategyToPassedValue() {
+		assertEquals(SumGradingStrategy.class, new CompositeGrade(new SumGradingStrategy()).getGradingStrategy().getClass());
+		assertEquals(MeanGradingStrategy.class, new CompositeGrade(new MeanGradingStrategy()).getGradingStrategy().getClass());
 	}
 }
