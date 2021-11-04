@@ -13,9 +13,6 @@ public class MeanGradingStrategy implements GradingStrategy {
 
 	@Override
 	public double totalGrades(List<Grade> grades) {
-		return grades
-				.stream()
-				.map((grade) -> grade.getValue())
-				.reduce(0.0, Double::sum) / (double) grades.size();
+		return (new SumGradingStrategy()).totalGrades(grades) / (double) grades.size();
 	}
 }
