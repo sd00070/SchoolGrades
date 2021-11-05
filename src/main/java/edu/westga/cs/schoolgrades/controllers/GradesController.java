@@ -10,6 +10,7 @@ import edu.westga.cs.schoolgrades.model.MeanGradingStrategy;
 import edu.westga.cs.schoolgrades.model.SimpleGrade;
 import edu.westga.cs.schoolgrades.model.SumGradingStrategy;
 import edu.westga.cs.schoolgrades.model.WeightedGrade;
+import edu.westga.cs.schoolgrades.views.GradeListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

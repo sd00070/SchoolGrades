@@ -1,4 +1,4 @@
-package edu.westga.cs.schoolgrades.controllers;
+package edu.westga.cs.schoolgrades.views;
 
 import edu.westga.cs.schoolgrades.model.Grade;
 import javafx.collections.ObservableList;
