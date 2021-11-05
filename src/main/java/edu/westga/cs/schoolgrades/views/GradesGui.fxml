@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane>
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Data">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Add quiz" />
+                        <MenuItem mnemonicParsing="false" text="Add homework" />
+                        <MenuItem mnemonicParsing="false" text="Add exam" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <HBox BorderPane.alignment="CENTER">
+               <children>
+                  <VBox fillWidth="false" prefHeight="269.0" prefWidth="98.0" spacing="5.0">
+                     <children>
+                        <Label contentDisplay="BOTTOM" text="Quizzes" />
+                        <ListView prefHeight="200.0" prefWidth="100.0" />
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Quiz Subtotal" textAlignment="CENTER">
+                           <graphic>
+                              <TextField editable="false" prefHeight="25.0" prefWidth="100.0" />
+                           </graphic>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefWidth="150.0" spacing="5.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Homeworks" />
+                        <ListView prefHeight="200.0" />
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="HW Subtotal">
+                           <graphic>
+                              <TextField editable="false" prefWidth="150.0" />
+                           </graphic>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefWidth="150.0" spacing="5.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Exams" />
+                        <ListView prefHeight="200.0" prefWidth="175.0" />
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Exam Subtotal">
+                           <graphic>
+                              <TextField editable="false" prefWidth="150.0" />
+                           </graphic>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </HBox>
+         </center>
+         <bottom>
+            <HBox spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label contentDisplay="RIGHT" text="Final Grade:">
+                     <graphic>
+                        <TextField editable="false" />
+                     </graphic>
+                  </Label>
+                  <Button mnemonicParsing="false" text="Recalculate" />
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </bottom>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </BorderPane>
+   </children>
+</Pane>
