@@ -71,13 +71,6 @@ public class GradesController implements Initializable {
 		this.examsGradeList = FXCollections.observableArrayList();
 		this.examsGradeListView = new GradeListView(this.examsGradeList);
 		this.examsGradeListView.setPrefWidth(150.0);
-
-		this.quizSubtotal = new CompositeGrade(new SumGradingStrategy());
-		this.homeworkSubtotal = new CompositeGrade(
-				new DropLowestGradeGradingStrategyDecorator(new MeanGradingStrategy()));
-		this.examSubtotal = new CompositeGrade();
-
-		this.finalGrade = new CompositeGrade(new SumGradingStrategy());
 	}
 
 	/**
@@ -151,21 +144,26 @@ public class GradesController implements Initializable {
 	 */
 	@FXML
 	public void handleRecalculateButtonClicked(MouseEvent mouseClickedEvent) {
+		this.quizSubtotal = new CompositeGrade(new SumGradingStrategy());
 		for (Grade curGrade : this.quizzesGradeList) {
 			this.quizSubtotal.addGrade(curGrade);
 		}
 		this.quizSubtotalTextField.textProperty().setValue(Double.toString(this.quizSubtotal.getValue()));
 
+		this.homeworkSubtotal = new CompositeGrade(
+				new DropLowestGradeGradingStrategyDecorator(new MeanGradingStrategy()));
 		for (Grade curGrade : this.homeworksGradeList) {
 			this.homeworkSubtotal.addGrade(curGrade);
 		}
 		this.homeworkSubtotalTextField.textProperty().setValue(Double.toString(this.homeworkSubtotal.getValue()));
 
+		this.examSubtotal = new CompositeGrade();
 		for (Grade curGrade : this.examsGradeList) {
 			this.examSubtotal.addGrade(curGrade);
 		}
 		this.examSubtotalTextField.textProperty().setValue(Double.toString(this.examSubtotal.getValue()));
 
+		this.finalGrade = new CompositeGrade(new SumGradingStrategy());
 		this.finalGrade.addGrade(new WeightedGrade(0.2, this.quizSubtotal));
 		this.finalGrade.addGrade(new WeightedGrade(0.3, this.homeworkSubtotal));
 		this.finalGrade.addGrade(new WeightedGrade(0.5, this.examSubtotal));
