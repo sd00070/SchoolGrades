@@ -86,19 +86,13 @@ public class GradesController implements Initializable {
 		this.homeworksGradeListViewPane.getChildren().add(this.homeworksGradeListView);
 		this.examsGradeListViewPane.getChildren().add(this.examsGradeListView);
 
-		this.quizzesGradeList.add(new SimpleGrade(20.0));
-		this.quizzesGradeList.add(new SimpleGrade(10.0));
+		this.quizzesGradeList.addAll(new SimpleGrade(20.0), new SimpleGrade(10.0));
 
-		this.homeworksGradeList.add(new SimpleGrade(100.0));
-		this.homeworksGradeList.add(new SimpleGrade(80.0));
-		this.homeworksGradeList.add(new SimpleGrade(60.0));
-		this.homeworksGradeList.add(new SimpleGrade(40.0));
-		this.homeworksGradeList.add(new SimpleGrade(20.0));
+		this.homeworksGradeList.addAll(new SimpleGrade(100.0), new SimpleGrade(80.0), new SimpleGrade(60.0),
+				new SimpleGrade(40.0), new SimpleGrade(20.0));
 
-		this.examsGradeList.add(new SimpleGrade(99.0));
-		this.examsGradeList.add(new SimpleGrade(67.0));
-		this.examsGradeList.add(new SimpleGrade(73.0));
-		this.examsGradeList.add(new SimpleGrade(88.0));
+		this.examsGradeList.addAll(new SimpleGrade(99.0), new SimpleGrade(67.0), new SimpleGrade(73.0),
+				new SimpleGrade(88.0));
 	}
 
 	private void handleAddDataMenuItemClicked(ObservableList<Grade> gradeList, ActionEvent mouseClickedEvent) {
