@@ -25,10 +25,10 @@
          <center>
             <HBox BorderPane.alignment="CENTER">
                <children>
-                  <VBox fillWidth="false" prefHeight="269.0" prefWidth="98.0" spacing="5.0">
+                  <VBox fillWidth="false" prefHeight="269.0" prefWidth="100.0" spacing="5.0">
                      <children>
                         <Label contentDisplay="BOTTOM" text="Quizzes" />
-                        <ListView fx:id="quizzesListView" editable="true" prefHeight="200.0" prefWidth="100.0" />
+                        <Pane fx:id="quizzesGradeListViewPane" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Quiz Subtotal" textAlignment="CENTER">
                            <graphic>
                               <TextField fx:id="quizSubtotalTextField" editable="false" prefHeight="25.0" prefWidth="100.0" />
@@ -42,7 +42,7 @@
                   <VBox prefWidth="150.0" spacing="5.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Homeworks" />
-                        <ListView fx:id="homeworksListView" editable="true" prefHeight="200.0" />
+                        <Pane fx:id="homeworksGradeListViewPane" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="HW Subtotal">
                            <graphic>
                               <TextField fx:id="homeworkSubtotalTextField" editable="false" prefWidth="150.0" />
@@ -56,7 +56,7 @@
                   <VBox prefWidth="150.0" spacing="5.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Exams" />
-                        <ListView fx:id="examsListView" editable="true" prefHeight="200.0" prefWidth="175.0" />
+                        <Pane fx:id="examsGradeListViewPane" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Exam Subtotal">
                            <graphic>
                               <TextField fx:id="examSubtotalTextField" editable="false" prefWidth="150.0" />
