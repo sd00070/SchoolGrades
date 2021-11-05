@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.schoolgrades.controllers.GradesController">
    <children>
       <BorderPane>
          <top>
@@ -14,9 +14,9 @@
                <menus>
                   <Menu mnemonicParsing="false" text="Data">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Add quiz" />
-                        <MenuItem mnemonicParsing="false" text="Add homework" />
-                        <MenuItem mnemonicParsing="false" text="Add exam" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleAddQuizMenuItemClicked" text="Add quiz" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleAddHomeworkMenuItemClicked" text="Add homework" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleAddExamMenuItemClicked" text="Add exam" />
                      </items>
                   </Menu>
                </menus>
@@ -28,10 +28,10 @@
                   <VBox fillWidth="false" prefHeight="269.0" prefWidth="98.0" spacing="5.0">
                      <children>
                         <Label contentDisplay="BOTTOM" text="Quizzes" />
-                        <ListView prefHeight="200.0" prefWidth="100.0" />
+                        <ListView fx:id="quizzesListView" prefHeight="200.0" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Quiz Subtotal" textAlignment="CENTER">
                            <graphic>
-                              <TextField editable="false" prefHeight="25.0" prefWidth="100.0" />
+                              <TextField fx:id="quizSubtotalTextField" editable="false" prefHeight="25.0" prefWidth="100.0" />
                            </graphic>
                         </Label>
                      </children>
@@ -42,10 +42,10 @@
                   <VBox prefWidth="150.0" spacing="5.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Homeworks" />
-                        <ListView prefHeight="200.0" />
+                        <ListView fx:id="homeworksListView" prefHeight="200.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="HW Subtotal">
                            <graphic>
-                              <TextField editable="false" prefWidth="150.0" />
+                              <TextField fx:id="homeworkSubtotalTextField" editable="false" prefWidth="150.0" />
                            </graphic>
                         </Label>
                      </children>
@@ -56,10 +56,10 @@
                   <VBox prefWidth="150.0" spacing="5.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Exams" />
-                        <ListView prefHeight="200.0" prefWidth="175.0" />
+                        <ListView fx:id="examsListView" prefHeight="200.0" prefWidth="175.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Exam Subtotal">
                            <graphic>
-                              <TextField editable="false" prefWidth="150.0" />
+                              <TextField fx:id="examSubtotalTextField" editable="false" prefWidth="150.0" />
                            </graphic>
                         </Label>
                      </children>
@@ -78,10 +78,10 @@
                <children>
                   <Label contentDisplay="RIGHT" text="Final Grade:">
                      <graphic>
-                        <TextField editable="false" />
+                        <TextField fx:id="finalGradeTextField" editable="false" />
                      </graphic>
                   </Label>
-                  <Button mnemonicParsing="false" text="Recalculate" />
+                  <Button mnemonicParsing="false" onMouseClicked="#handleRecalculateButtonClicked" text="Recalculate" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
