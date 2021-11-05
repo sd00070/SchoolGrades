@@ -17,9 +17,21 @@ public class WeightedGrade extends GradeDecorator {
 	 * @param decoratedGrade - the Grade object to be weighted
 	 */
 	public WeightedGrade(Grade decoratedGrade) {
+		this(1.0, decoratedGrade);
+	}
+
+	/**
+	 * Creates a WeightedGrade Decorator on a Grade object, wrapping it with the
+	 * given weight.
+	 * 
+	 * @param weight         - normalized percent value to multiply the Grade value
+	 *                       by
+	 * @param decoratedGrade - the Grade to decorate
+	 */
+	public WeightedGrade(double weight, Grade decoratedGrade) {
 		super(decoratedGrade);
 
-		this.weight = 1.0;
+		this.setWeight(weight);
 	}
 
 	/**
@@ -43,6 +55,7 @@ public class WeightedGrade extends GradeDecorator {
 		if (newWeight < 0.0) {
 			throw new IllegalArgumentException("New weight must be 0 or a positive number");
 		}
+
 		this.weight = newWeight;
 	}
 
