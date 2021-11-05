@@ -7,7 +7,9 @@ import edu.westga.cs.schoolgrades.model.CompositeGrade;
 import edu.westga.cs.schoolgrades.model.DropLowestGradeGradingStrategyDecorator;
 import edu.westga.cs.schoolgrades.model.Grade;
 import edu.westga.cs.schoolgrades.model.MeanGradingStrategy;
+import edu.westga.cs.schoolgrades.model.SimpleGrade;
 import edu.westga.cs.schoolgrades.model.SumGradingStrategy;
+import edu.westga.cs.schoolgrades.model.WeightedGrade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,22 +41,15 @@ public class GradesController implements Initializable {
 	private CompositeGrade finalGrade;
 
 	/* References to view classes */
-	@FXML
-	private ListView<Grade> quizzesListView;
-	@FXML
-	private ListView<Grade> homeworksListView;
-	@FXML
-	private ListView<Grade> examsListView;
+	@FXML private ListView<Grade> quizzesListView;
+	@FXML private ListView<Grade> homeworksListView;
+	@FXML private ListView<Grade> examsListView;
 
-	@FXML
-	private TextField quizSubtotalTextField;
-	@FXML
-	private TextField homeworkSubtotalTextField;
-	@FXML
-	private TextField examSubtotalTextField;
+	@FXML private TextField quizSubtotalTextField;
+	@FXML private TextField homeworkSubtotalTextField;
+	@FXML private TextField examSubtotalTextField;
 
-	@FXML
-	private TextField finalGradeTextField;
+	@FXML private TextField finalGradeTextField;
 
 	/**
 	 * Initializes the controller's models.
@@ -80,6 +75,20 @@ public class GradesController implements Initializable {
 		this.quizzesListView.setItems(this.quizGradeList);
 		this.homeworksListView.setItems(this.homeworkGradeList);
 		this.examsListView.setItems(this.examGradeList);
+
+		this.quizGradeList.add(new SimpleGrade(20.0));
+		this.quizGradeList.add(new SimpleGrade(10.0));
+
+		this.homeworkGradeList.add(new SimpleGrade(100.0));
+		this.homeworkGradeList.add(new SimpleGrade(80.0));
+		this.homeworkGradeList.add(new SimpleGrade(60.0));
+		this.homeworkGradeList.add(new SimpleGrade(40.0));
+		this.homeworkGradeList.add(new SimpleGrade(20.0));
+
+		this.examGradeList.add(new SimpleGrade(99.0));
+		this.examGradeList.add(new SimpleGrade(67.0));
+		this.examGradeList.add(new SimpleGrade(73.0));
+		this.examGradeList.add(new SimpleGrade(88.0));
 	}
 
 	private void handleAddDataMenuItemClicked(ObservableList<Grade> gradeList, ActionEvent mouseClickedEvent) {
@@ -129,6 +138,24 @@ public class GradesController implements Initializable {
 	 */
 	@FXML
 	public void handleRecalculateButtonClicked(MouseEvent mouseClickedEvent) {
-		System.out.println("Recalculate Button has been clicked.");
+		for (Grade curGrade : this.quizGradeList) {
+			this.quizSubtotal.addGrade(curGrade);
+		}
+		this.quizSubtotalTextField.textProperty().setValue(Double.toString(this.quizSubtotal.getValue()));
+
+		for (Grade curGrade : this.homeworkGradeList) {
+			this.homeworkSubtotal.addGrade(curGrade);
+		}
+		this.homeworkSubtotalTextField.textProperty().setValue(Double.toString(this.homeworkSubtotal.getValue()));
+
+		for (Grade curGrade : this.examGradeList) {
+			this.examSubtotal.addGrade(curGrade);
+		}
+		this.examSubtotalTextField.textProperty().setValue(Double.toString(this.examSubtotal.getValue()));
+
+		this.finalGrade.addGrade(new WeightedGrade(0.2, this.quizSubtotal));
+		this.finalGrade.addGrade(new WeightedGrade(0.3, this.homeworkSubtotal));
+		this.finalGrade.addGrade(new WeightedGrade(0.5, this.examSubtotal));
+		this.finalGradeTextField.textProperty().setValue(Double.toString(this.finalGrade.getValue()));
 	}
 }
