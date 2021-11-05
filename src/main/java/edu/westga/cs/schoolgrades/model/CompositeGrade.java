@@ -62,9 +62,26 @@ public class CompositeGrade implements Grade {
 	 * Adds a new Grade to the CompositeGrade list.
 	 * 
 	 * @param newGrade - the new Grade to add
+	 * @precondition newGrade != null
+	 * @throws IllegalArgumentException if newGrade == null
 	 */
 	public void addGrade(Grade newGrade) {
+		if (newGrade == null) {
+			throw new IllegalArgumentException("New grade cannot be null");
+		}
+
 		this.grades.add(newGrade);
+	}
+
+	/**
+	 * Appends a number of Grades to the CompositeGrade.
+	 * 
+	 * @param grades - the Grade objects to add
+	 */
+	public void addGrades(Grade... grades) {
+		for (Grade grade : grades) {
+			this.addGrade(grade);
+		}
 	}
 
 	/**
@@ -75,7 +92,7 @@ public class CompositeGrade implements Grade {
 	public ArrayList<Grade> getGrades() {
 		return this.grades;
 	}
-	
+
 	/**
 	 * Removes all Grades in the CompositeGrade.
 	 */

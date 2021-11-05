@@ -1,6 +1,7 @@
 package edu.westga.cs.schoolgrades.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,12 +89,20 @@ public class TestCompositeGradeAddGrade {
 		CompositeGrade contentfulTestCompositeGrade = new CompositeGrade();
 		contentfulTestCompositeGrade.addGrade(new SimpleGrade(100.0));
 		contentfulTestCompositeGrade.addGrade(new SimpleGrade(85.0));
-		
+
 		this.testCompositeGrade.addGrade(contentfulTestCompositeGrade);
-		
+
 		List<Grade> expectedList = new ArrayList<Grade>();
 		expectedList.add(contentfulTestCompositeGrade);
-		
+
 		assertEquals(expectedList, this.testCompositeGrade.getGrades());
+	}
+
+	/**
+	 * Should throw an IllegalArgumentException if passed null.
+	 */
+	@Test
+	public void testShouldThrowIllegalArgumentExceptionWhenPassedNull() {
+		assertThrows(IllegalArgumentException.class, () -> this.testCompositeGrade.addGrade(null));
 	}
 }
