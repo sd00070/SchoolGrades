@@ -35,9 +35,9 @@ public class GradesController implements Initializable {
 	private ObservableList<Grade> homeworksGradeList;
 	private ObservableList<Grade> examsGradeList;
 
-	private CompositeGrade quizSubtotal;
-	private CompositeGrade homeworkSubtotal;
-	private CompositeGrade examSubtotal;
+	private CompositeGrade quizzesSubtotal;
+	private CompositeGrade homeworksSubtotal;
+	private CompositeGrade examsSubtotal;
 
 	private CompositeGrade finalGrade;
 
@@ -51,9 +51,9 @@ public class GradesController implements Initializable {
 	@FXML private Pane examsGradeListViewPane;
 	private GradeListView examsGradeListView;
 
-	@FXML private TextField quizSubtotalTextField;
-	@FXML private TextField homeworkSubtotalTextField;
-	@FXML private TextField examSubtotalTextField;
+	@FXML private TextField quizzesSubtotalTextField;
+	@FXML private TextField homeworksSubtotalTextField;
+	@FXML private TextField examsSubtotalTextField;
 
 	@FXML private TextField finalGradeTextField;
 
@@ -63,18 +63,18 @@ public class GradesController implements Initializable {
 	public GradesController() {
 		this.quizzesGradeList = FXCollections.observableArrayList();
 		this.quizzesGradeListView = new GradeListView(this.quizzesGradeList);
-		this.quizSubtotal = new CompositeGrade(new SumGradingStrategy());
+		this.quizzesSubtotal = new CompositeGrade(new SumGradingStrategy());
 
 		this.homeworksGradeList = FXCollections.observableArrayList();
 		this.homeworksGradeListView = new GradeListView(this.homeworksGradeList);
 		this.homeworksGradeListView.setPrefWidth(150.0);
-		this.homeworkSubtotal = new CompositeGrade(
+		this.homeworksSubtotal = new CompositeGrade(
 				new DropLowestGradeGradingStrategyDecorator(new MeanGradingStrategy()));
 
 		this.examsGradeList = FXCollections.observableArrayList();
 		this.examsGradeListView = new GradeListView(this.examsGradeList);
 		this.examsGradeListView.setPrefWidth(150.0);
-		this.examSubtotal = new CompositeGrade();
+		this.examsSubtotal = new CompositeGrade();
 	}
 
 	/**
@@ -142,28 +142,28 @@ public class GradesController implements Initializable {
 	 */
 	@FXML
 	public void handleRecalculateButtonClicked(MouseEvent mouseClickedEvent) {
-		this.quizSubtotal.clearGrades();
+		this.quizzesSubtotal.clearGrades();
 		for (Grade curGrade : this.quizzesGradeList) {
-			this.quizSubtotal.addGrade(curGrade);
+			this.quizzesSubtotal.addGrade(curGrade);
 		}
-		this.quizSubtotalTextField.textProperty().setValue(Double.toString(this.quizSubtotal.getValue()));
+		this.quizzesSubtotalTextField.textProperty().setValue(Double.toString(this.quizzesSubtotal.getValue()));
 
-		this.homeworkSubtotal.clearGrades();
+		this.homeworksSubtotal.clearGrades();
 		for (Grade curGrade : this.homeworksGradeList) {
-			this.homeworkSubtotal.addGrade(curGrade);
+			this.homeworksSubtotal.addGrade(curGrade);
 		}
-		this.homeworkSubtotalTextField.textProperty().setValue(Double.toString(this.homeworkSubtotal.getValue()));
+		this.homeworksSubtotalTextField.textProperty().setValue(Double.toString(this.homeworksSubtotal.getValue()));
 
-		this.examSubtotal.clearGrades();
+		this.examsSubtotal.clearGrades();
 		for (Grade curGrade : this.examsGradeList) {
-			this.examSubtotal.addGrade(curGrade);
+			this.examsSubtotal.addGrade(curGrade);
 		}
-		this.examSubtotalTextField.textProperty().setValue(Double.toString(this.examSubtotal.getValue()));
+		this.examsSubtotalTextField.textProperty().setValue(Double.toString(this.examsSubtotal.getValue()));
 
 		this.finalGrade = new CompositeGrade(new SumGradingStrategy());
-		this.finalGrade.addGrade(new WeightedGrade(0.2, this.quizSubtotal));
-		this.finalGrade.addGrade(new WeightedGrade(0.3, this.homeworkSubtotal));
-		this.finalGrade.addGrade(new WeightedGrade(0.5, this.examSubtotal));
+		this.finalGrade.addGrade(new WeightedGrade(0.2, this.quizzesSubtotal));
+		this.finalGrade.addGrade(new WeightedGrade(0.3, this.homeworksSubtotal));
+		this.finalGrade.addGrade(new WeightedGrade(0.5, this.examsSubtotal));
 		this.finalGradeTextField.textProperty().setValue(Double.toString(this.finalGrade.getValue()));
 	}
 }

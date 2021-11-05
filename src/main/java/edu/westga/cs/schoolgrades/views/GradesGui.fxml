@@ -31,7 +31,7 @@
                         <Pane fx:id="quizzesGradeListViewPane" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Quiz Subtotal" textAlignment="CENTER">
                            <graphic>
-                              <TextField fx:id="quizSubtotalTextField" editable="false" prefHeight="25.0" prefWidth="100.0" />
+                              <TextField fx:id="quizzesSubtotalTextField" editable="false" prefHeight="25.0" prefWidth="100.0" />
                            </graphic>
                         </Label>
                      </children>
@@ -45,7 +45,7 @@
                         <Pane fx:id="homeworksGradeListViewPane" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="HW Subtotal">
                            <graphic>
-                              <TextField fx:id="homeworkSubtotalTextField" editable="false" prefWidth="150.0" />
+                              <TextField fx:id="homeworksSubtotalTextField" editable="false" prefWidth="150.0" />
                            </graphic>
                         </Label>
                      </children>
@@ -59,7 +59,7 @@
                         <Pane fx:id="examsGradeListViewPane" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Exam Subtotal">
                            <graphic>
-                              <TextField fx:id="examSubtotalTextField" editable="false" prefWidth="150.0" />
+                              <TextField fx:id="examsSubtotalTextField" editable="false" prefWidth="150.0" />
                            </graphic>
                         </Label>
                      </children>
