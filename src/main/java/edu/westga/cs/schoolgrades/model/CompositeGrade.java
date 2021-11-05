@@ -75,6 +75,13 @@ public class CompositeGrade implements Grade {
 	public ArrayList<Grade> getGrades() {
 		return this.grades;
 	}
+	
+	/**
+	 * Removes all Grades in the CompositeGrade.
+	 */
+	public void clearGrades() {
+		this.grades.clear();
+	}
 
 	@Override
 	public double getValue() {
