@@ -96,7 +96,9 @@ public class GradesController implements Initializable {
 	}
 
 	private void handleAddDataMenuItemClicked(ObservableList<Grade> gradeList, ActionEvent mouseClickedEvent) {
-		System.out.print("MenuItem clicked");
+		SimpleGrade newGrade = new SimpleGrade(0.0);
+		
+		gradeList.add(newGrade);
 	}
 
 	/**
@@ -108,7 +110,6 @@ public class GradesController implements Initializable {
 	@FXML
 	public void handleAddQuizMenuItemClicked(ActionEvent mouseClickedEvent) {
 		this.handleAddDataMenuItemClicked(this.quizzesGradeList, mouseClickedEvent);
-		System.out.println(": Add Quiz");
 	}
 
 	/**
@@ -120,7 +121,6 @@ public class GradesController implements Initializable {
 	@FXML
 	public void handleAddHomeworkMenuItemClicked(ActionEvent mouseClickedEvent) {
 		this.handleAddDataMenuItemClicked(this.homeworksGradeList, mouseClickedEvent);
-		System.out.println(": Add Homework");
 	}
 
 	/**
@@ -132,7 +132,6 @@ public class GradesController implements Initializable {
 	@FXML
 	public void handleAddExamMenuItemClicked(ActionEvent mouseClickedEvent) {
 		this.handleAddDataMenuItemClicked(this.examsGradeList, mouseClickedEvent);
-		System.out.println(": Add Exam");
 	}
 
 	/**
