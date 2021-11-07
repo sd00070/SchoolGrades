@@ -25,6 +25,8 @@ public class GradeListView extends ListView<Grade> {
 		this.setPrefHeight(200.0);
 		this.setPrefWidth(100.0);
 
+		this.setEditable(true);
+
 		this.setCellFactory(new Callback<ListView<Grade>, ListCell<Grade>>() {
 			@Override
 			public ListCell<Grade> call(ListView<Grade> arg0) {
@@ -36,7 +38,9 @@ public class GradeListView extends ListView<Grade> {
 	private class GradeCell extends ListCell<Grade> {
 		@Override
 		public void updateItem(Grade newGrade, boolean empty) {
+
 			super.updateItem(newGrade, empty);
+
 			if (newGrade != null) {
 				this.setText(Double.toString(newGrade.getValue()));
 			}
