@@ -19,8 +19,9 @@ public class SimpleGradeStringConverter extends StringConverter<SimpleGrade> {
 	private final ListCell<SimpleGrade> gradeCell;
 
 	/**
+	 * Creates a Converter, attached to a ListCell containing a SimpleGrade.
 	 * 
-	 * @param gradeCell
+	 * @param gradeCell - the ListCell the Converter is bound to
 	 */
 	public SimpleGradeStringConverter(ListCell<SimpleGrade> gradeCell) {
 		this.gradeCell = gradeCell;
