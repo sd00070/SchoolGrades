@@ -10,7 +10,7 @@ import edu.westga.cs.schoolgrades.model.MeanGradingStrategy;
 import edu.westga.cs.schoolgrades.model.SimpleGrade;
 import edu.westga.cs.schoolgrades.model.SumGradingStrategy;
 import edu.westga.cs.schoolgrades.model.WeightedGrade;
-import edu.westga.cs.schoolgrades.views.GradeListView;
+import edu.westga.cs.schoolgrades.views.SimpleGradeListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,9 +31,9 @@ import javafx.scene.layout.Pane;
 public class GradesController implements Initializable {
 
 	/* References to model classes */
-	private ObservableList<Grade> quizzesGradeList;
-	private ObservableList<Grade> homeworksGradeList;
-	private ObservableList<Grade> examsGradeList;
+	private ObservableList<SimpleGrade> quizzesGradeList;
+	private ObservableList<SimpleGrade> homeworksGradeList;
+	private ObservableList<SimpleGrade> examsGradeList;
 
 	private CompositeGrade quizzesSubtotal;
 	private CompositeGrade homeworksSubtotal;
@@ -43,13 +43,13 @@ public class GradesController implements Initializable {
 
 	/* References to view classes */
 	@FXML private Pane quizzesGradeListViewPane;
-	private GradeListView quizzesGradeListView;
+	private SimpleGradeListView quizzesGradeListView;
 
 	@FXML private Pane homeworksGradeListViewPane;
-	private GradeListView homeworksGradeListView;
+	private SimpleGradeListView homeworksGradeListView;
 
 	@FXML private Pane examsGradeListViewPane;
-	private GradeListView examsGradeListView;
+	private SimpleGradeListView examsGradeListView;
 
 	@FXML private TextField quizzesSubtotalTextField;
 	@FXML private TextField homeworksSubtotalTextField;
@@ -62,17 +62,17 @@ public class GradesController implements Initializable {
 	 */
 	public GradesController() {
 		this.quizzesGradeList = FXCollections.observableArrayList();
-		this.quizzesGradeListView = new GradeListView(this.quizzesGradeList);
+		this.quizzesGradeListView = new SimpleGradeListView(this.quizzesGradeList);
 		this.quizzesSubtotal = new CompositeGrade(new SumGradingStrategy());
 
 		this.homeworksGradeList = FXCollections.observableArrayList();
-		this.homeworksGradeListView = new GradeListView(this.homeworksGradeList);
+		this.homeworksGradeListView = new SimpleGradeListView(this.homeworksGradeList);
 		this.homeworksGradeListView.setPrefWidth(150.0);
 		this.homeworksSubtotal = new CompositeGrade(
 				new DropLowestGradeGradingStrategyDecorator(new MeanGradingStrategy()));
 
 		this.examsGradeList = FXCollections.observableArrayList();
-		this.examsGradeListView = new GradeListView(this.examsGradeList);
+		this.examsGradeListView = new SimpleGradeListView(this.examsGradeList);
 		this.examsGradeListView.setPrefWidth(150.0);
 		this.examsSubtotal = new CompositeGrade();
 	}
@@ -95,9 +95,9 @@ public class GradesController implements Initializable {
 				new SimpleGrade(88.0));
 	}
 
-	private void handleAddDataMenuItemClicked(ObservableList<Grade> gradeList, ActionEvent mouseClickedEvent) {
+	private void handleAddDataMenuItemClicked(ObservableList<SimpleGrade> gradeList, ActionEvent mouseClickedEvent) {
 		SimpleGrade newGrade = new SimpleGrade(0.0);
-		
+
 		gradeList.add(newGrade);
 	}
 
