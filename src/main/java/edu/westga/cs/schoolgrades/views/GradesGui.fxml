@@ -31,7 +31,10 @@
                         <Pane fx:id="quizzesGradeListViewPane" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Quiz Subtotal" textAlignment="CENTER">
                            <graphic>
-                              <TextField fx:id="quizzesSubtotalTextField" editable="false" prefHeight="25.0" prefWidth="100.0" />
+                              <TextField fx:id="quizzesSubtotalTextField" editable="false" prefHeight="25.0" prefWidth="100.0">
+                                 <tooltip>
+                                    <Tooltip text="Quiz subtotal" />
+                                 </tooltip></TextField>
                            </graphic>
                         </Label>
                      </children>
@@ -45,7 +48,10 @@
                         <Pane fx:id="homeworksGradeListViewPane" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="HW Subtotal">
                            <graphic>
-                              <TextField fx:id="homeworksSubtotalTextField" editable="false" prefWidth="150.0" />
+                              <TextField fx:id="homeworksSubtotalTextField" editable="false" prefWidth="150.0">
+                                 <tooltip>
+                                    <Tooltip text="Homework subtotal" />
+                                 </tooltip></TextField>
                            </graphic>
                         </Label>
                      </children>
@@ -59,7 +65,10 @@
                         <Pane fx:id="examsGradeListViewPane" prefWidth="100.0" />
                         <Label alignment="CENTER" contentDisplay="BOTTOM" text="Exam Subtotal">
                            <graphic>
-                              <TextField fx:id="examsSubtotalTextField" editable="false" prefWidth="150.0" />
+                              <TextField fx:id="examsSubtotalTextField" editable="false" prefWidth="150.0">
+                                 <tooltip>
+                                    <Tooltip text="Exam subtotal" />
+                                 </tooltip></TextField>
                            </graphic>
                         </Label>
                      </children>
@@ -78,7 +87,10 @@
                <children>
                   <Label contentDisplay="RIGHT" text="Final Grade:">
                      <graphic>
-                        <TextField fx:id="finalGradeTextField" editable="false" />
+                        <TextField fx:id="finalGradeTextField" editable="false">
+                           <tooltip>
+                              <Tooltip text="Final grade" />
+                           </tooltip></TextField>
                      </graphic>
                   </Label>
                   <Button mnemonicParsing="false" onMouseClicked="#handleRecalculateButtonClicked" text="Recalculate" />
