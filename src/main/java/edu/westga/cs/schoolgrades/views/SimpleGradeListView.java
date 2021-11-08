@@ -4,6 +4,7 @@ import edu.westga.cs.schoolgrades.controllers.SimpleGradeStringConverter;
 import edu.westga.cs.schoolgrades.model.SimpleGrade;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.TextFieldListCell;
 
 /**
@@ -15,15 +16,27 @@ import javafx.scene.control.cell.TextFieldListCell;
 public class SimpleGradeListView extends ListView<SimpleGrade> {
 
 	/**
-	 * Creates the GradeListView and sets-up its CellFactory
+	 * Creates a SimpleGradeListView and sets-up its CellFactory, connecting the
+	 * SimpleGradeStringConverter.
 	 * 
-	 * @param gradeList - the observable list of Grades
+	 * @param simpleGradeList - the list of SimpleGrades backing the ListView
+	 * @param tooltipString   - the String to use as the SimpleGradeList's tooltip
+	 * @precondition gradeList != null
+	 * @throws IllegalArgumentException if gradeList == null
 	 */
-	public SimpleGradeListView(ObservableList<SimpleGrade> gradeList) {
-		super(gradeList);
+	public SimpleGradeListView(ObservableList<SimpleGrade> simpleGradeList, String tooltipString) {
+		super(simpleGradeList);
+
+		if (simpleGradeList == null) {
+			throw new IllegalArgumentException("SimpleGradeList cannot be null.");
+		}
 
 		this.setPrefHeight(200.0);
 		this.setPrefWidth(100.0);
+
+		if (tooltipString != null) {
+			this.setTooltip(new Tooltip(tooltipString));
+		}
 
 		this.setEditable(true);
 
@@ -32,5 +45,17 @@ public class SimpleGradeListView extends ListView<SimpleGrade> {
 			gradeCell.setConverter(new SimpleGradeStringConverter(gradeCell));
 			return gradeCell;
 		});
+	}
+
+	/**
+	 * Creates a SimpleGradeListView and sets-up its CellFactory, connecting the
+	 * SimpleGradeStringConverter.
+	 * 
+	 * Does not add a tooltip.
+	 * 
+	 * @param simpleGradeList - the list of SimpleGrades backing the ListView
+	 */
+	public SimpleGradeListView(ObservableList<SimpleGrade> simpleGradeList) {
+		this(simpleGradeList, null);
 	}
 }
