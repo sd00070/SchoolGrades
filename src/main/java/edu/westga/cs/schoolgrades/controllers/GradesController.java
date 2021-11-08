@@ -62,17 +62,17 @@ public class GradesController implements Initializable {
 	 */
 	public GradesController() {
 		this.quizzesGradeList = FXCollections.observableArrayList();
-		this.quizzesGradeListView = new SimpleGradeListView(this.quizzesGradeList);
+		this.quizzesGradeListView = new SimpleGradeListView(this.quizzesGradeList, "Column for quiz grades");
 		this.quizzesSubtotal = new CompositeGrade(new SumGradingStrategy());
 
 		this.homeworksGradeList = FXCollections.observableArrayList();
-		this.homeworksGradeListView = new SimpleGradeListView(this.homeworksGradeList);
+		this.homeworksGradeListView = new SimpleGradeListView(this.homeworksGradeList, "Column for homework grades");
 		this.homeworksGradeListView.setPrefWidth(150.0);
 		this.homeworksSubtotal = new CompositeGrade(
 				new DropLowestGradeGradingStrategyDecorator(new MeanGradingStrategy()));
 
 		this.examsGradeList = FXCollections.observableArrayList();
-		this.examsGradeListView = new SimpleGradeListView(this.examsGradeList);
+		this.examsGradeListView = new SimpleGradeListView(this.examsGradeList, "Column for exam grades");
 		this.examsGradeListView.setPrefWidth(150.0);
 		this.examsSubtotal = new CompositeGrade();
 	}
