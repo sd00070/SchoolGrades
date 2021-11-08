@@ -11,6 +11,8 @@ import edu.westga.cs.schoolgrades.model.SimpleGrade;
 import edu.westga.cs.schoolgrades.model.SumGradingStrategy;
 import edu.westga.cs.schoolgrades.model.WeightedGrade;
 import edu.westga.cs.schoolgrades.views.SimpleGradeListView;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,10 +38,16 @@ public class GradesController implements Initializable {
 	private ObservableList<SimpleGrade> examsGradeList;
 
 	private CompositeGrade quizzesSubtotal;
+	private DoubleProperty quizzesSubtotalProperty;
+
 	private CompositeGrade homeworksSubtotal;
+	private DoubleProperty homeworksSubtotalProperty;
+	
 	private CompositeGrade examsSubtotal;
+	private DoubleProperty examsSubtotalProperty;
 
 	private CompositeGrade finalGrade;
+	private DoubleProperty finalGradeProperty;
 
 	/* References to view classes */
 	@FXML
@@ -71,17 +79,23 @@ public class GradesController implements Initializable {
 		this.quizzesGradeList = FXCollections.observableArrayList();
 		this.quizzesGradeListView = new SimpleGradeListView(this.quizzesGradeList, "Column for quiz grades");
 		this.quizzesSubtotal = new CompositeGrade(new SumGradingStrategy());
+		this.quizzesSubtotalProperty = new SimpleDoubleProperty(this.quizzesSubtotal.getValue());
 
 		this.homeworksGradeList = FXCollections.observableArrayList();
 		this.homeworksGradeListView = new SimpleGradeListView(this.homeworksGradeList, "Column for homework grades");
 		this.homeworksGradeListView.setPrefWidth(150.0);
 		this.homeworksSubtotal = new CompositeGrade(
 				new DropLowestGradeGradingStrategyDecorator(new MeanGradingStrategy()));
+		this.homeworksSubtotalProperty = new SimpleDoubleProperty(this.homeworksSubtotal.getValue());
 
 		this.examsGradeList = FXCollections.observableArrayList();
 		this.examsGradeListView = new SimpleGradeListView(this.examsGradeList, "Column for exam grades");
 		this.examsGradeListView.setPrefWidth(150.0);
 		this.examsSubtotal = new CompositeGrade();
+		this.examsSubtotalProperty = new SimpleDoubleProperty(this.examsSubtotal.getValue());
+		
+		this.finalGrade = new CompositeGrade(new SumGradingStrategy());
+		this.finalGradeProperty = new SimpleDoubleProperty(this.finalGrade.getValue());
 	}
 
 	/**
@@ -92,6 +106,11 @@ public class GradesController implements Initializable {
 		this.quizzesGradeListViewPane.getChildren().add(this.quizzesGradeListView);
 		this.homeworksGradeListViewPane.getChildren().add(this.homeworksGradeListView);
 		this.examsGradeListViewPane.getChildren().add(this.examsGradeListView);
+
+		this.quizzesSubtotalTextField.textProperty().bind(this.quizzesSubtotalProperty.asString());
+		this.homeworksSubtotalTextField.textProperty().bind(this.homeworksSubtotalProperty.asString());
+		this.examsSubtotalTextField.textProperty().bind(this.examsSubtotalProperty.asString());
+		this.finalGradeTextField.textProperty().bind(this.finalGradeProperty.asString());
 
 		this.quizzesGradeList.addAll(new SimpleGrade(20.0), new SimpleGrade(10.0));
 
@@ -156,24 +175,24 @@ public class GradesController implements Initializable {
 		for (Grade curGrade : this.quizzesGradeList) {
 			this.quizzesSubtotal.addGrade(curGrade);
 		}
-		this.quizzesSubtotalTextField.textProperty().setValue(Double.toString(this.quizzesSubtotal.getValue()));
+		this.quizzesSubtotalProperty.set(this.quizzesSubtotal.getValue());
 
 		this.homeworksSubtotal.clearGrades();
 		for (Grade curGrade : this.homeworksGradeList) {
 			this.homeworksSubtotal.addGrade(curGrade);
 		}
-		this.homeworksSubtotalTextField.textProperty().setValue(Double.toString(this.homeworksSubtotal.getValue()));
+		this.homeworksSubtotalProperty.set(this.homeworksSubtotal.getValue());
 
 		this.examsSubtotal.clearGrades();
 		for (Grade curGrade : this.examsGradeList) {
 			this.examsSubtotal.addGrade(curGrade);
 		}
-		this.examsSubtotalTextField.textProperty().setValue(Double.toString(this.examsSubtotal.getValue()));
+		this.examsSubtotalProperty.set(this.examsSubtotal.getValue());
 
-		this.finalGrade = new CompositeGrade(new SumGradingStrategy());
+		this.finalGrade.clearGrades();
 		this.finalGrade.addGrade(new WeightedGrade(0.2, this.quizzesSubtotal));
 		this.finalGrade.addGrade(new WeightedGrade(0.3, this.homeworksSubtotal));
 		this.finalGrade.addGrade(new WeightedGrade(0.5, this.examsSubtotal));
-		this.finalGradeTextField.textProperty().setValue(Double.toString(this.finalGrade.getValue()));
+		this.finalGradeProperty.set(this.finalGrade.getValue());
 	}
 }
