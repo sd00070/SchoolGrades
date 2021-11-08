@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -12,12 +13,24 @@
          <top>
             <MenuBar BorderPane.alignment="CENTER">
                <menus>
-                  <Menu mnemonicParsing="false" text="Data">
+                  <Menu text="_Data">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleAddQuizMenuItemClicked" text="Add quiz" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleAddHomeworkMenuItemClicked" text="Add homework" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleAddExamMenuItemClicked" text="Add exam" />
+                        <MenuItem onAction="#handleAddQuizMenuItemClicked" text="Add _quiz">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem onAction="#handleAddHomeworkMenuItemClicked" text="Add _homework">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="H" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem onAction="#handleAddExamMenuItemClicked" text="Add _exam">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="E" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                      </items>
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="D" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
                   </Menu>
                </menus>
             </MenuBar>
