@@ -42,20 +42,27 @@ public class GradesController implements Initializable {
 	private CompositeGrade finalGrade;
 
 	/* References to view classes */
-	@FXML private Pane quizzesGradeListViewPane;
+	@FXML
+	private Pane quizzesGradeListViewPane;
 	private SimpleGradeListView quizzesGradeListView;
 
-	@FXML private Pane homeworksGradeListViewPane;
+	@FXML
+	private Pane homeworksGradeListViewPane;
 	private SimpleGradeListView homeworksGradeListView;
 
-	@FXML private Pane examsGradeListViewPane;
+	@FXML
+	private Pane examsGradeListViewPane;
 	private SimpleGradeListView examsGradeListView;
 
-	@FXML private TextField quizzesSubtotalTextField;
-	@FXML private TextField homeworksSubtotalTextField;
-	@FXML private TextField examsSubtotalTextField;
+	@FXML
+	private TextField quizzesSubtotalTextField;
+	@FXML
+	private TextField homeworksSubtotalTextField;
+	@FXML
+	private TextField examsSubtotalTextField;
 
-	@FXML private TextField finalGradeTextField;
+	@FXML
+	private TextField finalGradeTextField;
 
 	/**
 	 * Initializes the controller's models.
@@ -95,10 +102,14 @@ public class GradesController implements Initializable {
 				new SimpleGrade(88.0));
 	}
 
-	private void handleAddDataMenuItemClicked(ObservableList<SimpleGrade> gradeList, ActionEvent mouseClickedEvent) {
+	private void handleAddDataMenuItemClicked(SimpleGradeListView listView, ObservableList<SimpleGrade> gradeList,
+			ActionEvent mouseClickedEvent) {
 		SimpleGrade newGrade = new SimpleGrade(0.0);
 
 		gradeList.add(newGrade);
+
+		listView.getSelectionModel().clearAndSelect(gradeList.size() - 1);
+		listView.requestFocus();
 	}
 
 	/**
@@ -109,7 +120,7 @@ public class GradesController implements Initializable {
 	 */
 	@FXML
 	public void handleAddQuizMenuItemClicked(ActionEvent mouseClickedEvent) {
-		this.handleAddDataMenuItemClicked(this.quizzesGradeList, mouseClickedEvent);
+		this.handleAddDataMenuItemClicked(this.quizzesGradeListView, this.quizzesGradeList, mouseClickedEvent);
 	}
 
 	/**
@@ -120,7 +131,7 @@ public class GradesController implements Initializable {
 	 */
 	@FXML
 	public void handleAddHomeworkMenuItemClicked(ActionEvent mouseClickedEvent) {
-		this.handleAddDataMenuItemClicked(this.homeworksGradeList, mouseClickedEvent);
+		this.handleAddDataMenuItemClicked(this.homeworksGradeListView, this.homeworksGradeList, mouseClickedEvent);
 	}
 
 	/**
@@ -131,7 +142,7 @@ public class GradesController implements Initializable {
 	 */
 	@FXML
 	public void handleAddExamMenuItemClicked(ActionEvent mouseClickedEvent) {
-		this.handleAddDataMenuItemClicked(this.examsGradeList, mouseClickedEvent);
+		this.handleAddDataMenuItemClicked(this.examsGradeListView, this.examsGradeList, mouseClickedEvent);
 	}
 
 	/**
