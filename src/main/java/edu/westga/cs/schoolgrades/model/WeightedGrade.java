@@ -1,70 +1,38 @@
 package edu.westga.cs.schoolgrades.model;
 
 /**
- * WeightedGrade decorates another grade object with a given weight.
+ * Decorator for {@link Grade} objects that applies a multiplicative weight.
  * 
- * @author Spencer Dent
- * @version 2021-10-18
+ * @author lewisb
+ *
  */
-public class WeightedGrade extends GradeDecorator {
+public class WeightedGrade implements Grade {
 
-	private double weight;
-
+	private final Grade grade;
+	private final double weight;
+	
 	/**
-	 * Creates a WeightedGrade Decorator on a Grade object, initially weighting the
-	 * Grade 100% (not affecting the Grade until changed)
+	 * Creates a WeightedGrade that decorates the given {@link Grade} by applying the given weight to it.
 	 * 
-	 * @param decoratedGrade - the Grade object to be weighted
+	 * @param decoratedGrade the {@link Grade} to decorate. Must not be null
+	 * @param weight the weight to apply to decoratedGrade. Must be between 0.0 and 1.0
 	 */
-	public WeightedGrade(Grade decoratedGrade) {
-		this(1.0, decoratedGrade);
-	}
-
-	/**
-	 * Creates a WeightedGrade Decorator on a Grade object, wrapping it with the
-	 * given weight.
-	 * 
-	 * @param weight         - normalized percent value to multiply the Grade value
-	 *                       by
-	 * @param decoratedGrade - the Grade to decorate
-	 */
-	public WeightedGrade(double weight, Grade decoratedGrade) {
-		super(decoratedGrade);
-
-		this.setWeight(weight);
-	}
-
-	/**
-	 * Returns the current weight applied to the Grade
-	 * 
-	 * @return the weight of the Decorator
-	 */
-	public double getWeight() {
-		return this.weight;
-	}
-
-	/**
-	 * Sets the weight of the Decorator. The value has been normalized (0.0 -> 0%,
-	 * 1.0 -> 100% ...)
-	 * 
-	 * @param newWeight - the weight to affect the Grade
-	 * @precondition newWeight >= 0.0
-	 * @throws IllegalArgumentException if newWeight < 0.0
-	 */
-	public void setWeight(double newWeight) {
-		if (newWeight < 0.0) {
-			throw new IllegalArgumentException("New weight must be 0 or a positive number");
+	public WeightedGrade(final Grade decoratedGrade, double weight) {
+		if (decoratedGrade == null) {
+			throw new IllegalArgumentException("grade should not be null");
 		}
-
-		this.weight = newWeight;
+		
+		if (weight < 0 || weight > 1) {
+			throw new IllegalArgumentException("weight must be between 0.0 and 1.0");
+		}
+		
+		this.grade = decoratedGrade;
+		this.weight = weight;
 	}
-
-	/**
-	 * Returns the modified value after being affected by the weight.
-	 * 
-	 * @return the new value after being weighted
-	 */
+	
+	@Override
 	public double getValue() {
-		return super.getValue() * this.weight;
+		return this.grade.getValue() * this.weight;
 	}
+
 }
