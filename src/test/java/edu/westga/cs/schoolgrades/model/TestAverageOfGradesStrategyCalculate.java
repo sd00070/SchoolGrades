@@ -2,6 +2,9 @@ package edu.westga.cs.schoolgrades.model;
 
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,9 +28,14 @@ public class TestAverageOfGradesStrategyCalculate {
 	
 	@BeforeEach
 	public void setup() {
-		grade0 = new SimpleGrade(10);
-		grade1 = new SimpleGrade(20);
-		grade2 = new SimpleGrade(30);
+		grade0 = mock(Grade.class);
+		when(grade0.getValue()).thenReturn(10.0);
+		
+		grade1 = mock(Grade.class);
+		when(grade1.getValue()).thenReturn(20.0);
+		
+		grade2 = mock(Grade.class);
+		when(grade2.getValue()).thenReturn(30.0);
 		
 		grades = new ArrayList<Grade>();
 		
